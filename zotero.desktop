@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Zotero
-Comment="Open-source reference manager (standalone version)"
+Comment="Gestionnaire de références bibliographiques (version standalone)"
 Exec=__ZOTERO_PATH__
 Icon=accessories-dictionary
 Type=Application

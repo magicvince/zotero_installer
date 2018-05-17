@@ -4,12 +4,11 @@
 # Copyright 2011-2013 Sebastiaan Mathot
 # <http://www.cogsci.nl/>
 #
-# This file is part of qnotero.
+# Ce fichier est une partie de qnotero.
 #
-# qnotero is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# qnotero est un logiciel libre: Il peut être diffuser, utiliser et modifier selon les termes 
+# de la GNU General Public License publiée par
+# la Free Software Foundation, dans version 3 (ou la dernière selon votre choix).
 #
 # qnotero is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -29,40 +28,40 @@ TMP="/tmp/zotero.tar.bz2"
 DEST_FOLDER=zotero
 EXEC=zotero
 
-echo ">>> This script will download and install Zotero standalone on your system."
-echo ">>> Do you want to continue?"
-echo ">>> y/n (default=y)"
+echo ">>> Ce script va téléchargé et installé la version standalone de zotero sur votre système."
+echo ">>> Voulez--vous continuer?"
+echo ">>> o/n (defaut=o)"
 read INPUT
 if [ "$INPUT" = "n" ]; then
-	echo ">>> Aborting installation"
+	echo ">>> Abandon de l'installation"
 	exit 0
 fi
 
-echo ">>> Do you want to install Zotero globally (g) or locally (l)."
-echo ">>> Root access is required for a global installation."
-echo ">>> g/l (default=l)"
+echo ">>> Voulez-vous installer Zotero globalement, pour tous les utilisateurs (g) ou localement c'est à dire pour la personne l'installant seulement (l)?"
+echo ">>> Les droits d'administration sont requis pour une installation globale."
+echo ">>> g/l (defaut=l)"
 read INPUT
 if [ "$INPUT" != "g" ]; then
-	echo ">>> Installing locally"
+	echo ">>> Installation locale"
 	DEST="$HOME"
 	MENU_PATH="$HOME/.local/share/applications/zotero.desktop"
 	MENU_DIR="$HOME/.local/share/applications"
 else
-	echo ">>> Installing globally"
+	echo ">>> Installation globale"
 	DEST="/opt"
 	MENU_PATH="/usr/share/applications/zotero.desktop"
 	MENU_DIR="/usr/share/applications"
 fi
 
 
-echo ">>> Please input the version of Zotero."
+echo ">>> Merci de préciser le numéro de version à installer de Zotero."
 echo ">>> (default=$VERSION)"
 read INPUT
 if [ "$INPUT" != "" ]; then
 	VERSION=$INPUT
 fi
 
-echo ">>> Please input your systems architecture (i686 or x86_64)."
+echo ">>> Merci de préciser l'architecture de votre système (i686 ou x86_64)."
 echo ">>> (default=$ARCH)"
 read INPUT
 if [ "$INPUT" != "" ]; then
@@ -71,71 +70,71 @@ fi
 
 URL="https://download.zotero.org/client/release/${VERSION}/Zotero-${VERSION}_linux-${ARCH}.tar.bz2"
 
-echo ">>> Downloading Zotero standalone $VERSION for $ARCH"
+echo ">>> Téléchargement de Zotero standalone $VERSION pour $ARCH"
 echo ">>> URL: $URL"
 
 wget $URL -O $TMP
 if [ $? -ne 0 ]; then
-	echo ">>> Failed to download Zotero"
-	echo ">>> Aborting installation, sorry!"
+	echo ">>> Échec du téléchargement de Zotero"
+	echo ">>> Abandon de l'installation, désolé!"
 	exit 1
 fi
 
 if [ -d $DEST/$DEST_FOLDER ]; then
-	echo ">>> The destination folder ($DEST/$DEST_FOLDER) exists. Do you want to remove it?"
-	echo ">>> y/n (default=n)"
+	echo ">>> Le répertoire de destination ($DEST/$DEST_FOLDER) existe déjà. Voulez-vous le supprimer?"
+	echo ">>> o/n (default=n)"
 	read INPUT
-	if [ "$INPUT" = "y" ]; then
-		echo ">>> Removing old Zotero installation"
+	if [ "$INPUT" = "o" ]; then
+		echo ">>> Effacement de l'ancienne version de zotero"
 		rm -Rf $DEST/$DEST_FOLDER
 		if [ $? -ne 0 ]; then
-			echo ">>> Failed to remove old Zotero installation"
-			echo ">>> Aborting installation, sorry!"
+			echo ">>> Échec de suppression de l'ancienne version"
+			echo ">>> Abandon de l'installation, désolé!"
 			exit 1
 		fi
 	else
-		echo ">>> Aborting installation"
+		echo "Abandon de l'installation, désolé!"
 		exit 0
 	fi
 fi
 
-echo ">>> Extracting Zotero"
-echo ">>> Target folder: $DEST/$DEST_FOLDER"
+echo ">>> Extraction en cours de Zotero"
+echo ">>> Répertoire cible: $DEST/$DEST_FOLDER"
 
 tar -xpf $TMP -C $DEST
 if [ $? -ne 0 ]; then
-	echo ">>> Failed to extract Zotero"
-	echo ">>> Aborting installation, sorry!"
+	echo ">>> Échec d'extraction de Zotero"
+	echo ">>> Abandon de l'installation, désolé!"
 	exit 1
 fi
 
 mv $DEST/Zotero_linux-$ARCH $DEST/$DEST_FOLDER
 if [ $? -ne 0 ]; then
-	echo ">>> Failed to move Zotero to $DEST/$DEST_FOLDER"
-	echo ">>> Aborting installation, sorry!"
+	echo ">>> Échec de déplacement de zotero vers $DEST/$DEST_FOLDER"
+	echo ">>> Abandon de l'installation, désolé!"
 	exit 1
 fi
 
 if [ -f $MENU_DIR ]; then
-	echo ">>> Creating $MENU_DIR"
+	echo ">>> Création du menu $MENU_DIR"
 	mkdir $MENU_DIR
 fi
 
-echo ">>> Creating menu entry"
+echo ">>> Création de l'entrée de menu en cours…"
 echo "[Desktop Entry]
 Name=Zotero
-Comment=Open-source reference manager (standalone version)
+Comment=Gestionnaire de références documentaires et bibliographique (version standalone)
 Exec=$DEST/$DEST_FOLDER/zotero
 Icon=$DEST/$DEST_FOLDER/chrome/icons/default/default48.png
 Type=Application
 StartupNotify=true" > $MENU_PATH
 if [ $? -ne 0 ]; then
-	echo ">>> Failed to create menu entry"
-	echo ">>> Aborting installation, sorry!"
+	echo ">>> Échec de la création de l'item dans le menu des applications"
+	echo ">>> Abandon de l'installation, désolé!"
 	exit 1
 fi
 
-echo ">>> Done!"
+echo ">>> Terminé!"
 echo
 echo ">>> Don't forget to check out Qnotero, the Zotero sidekick!"
 echo ">>> URL: http://www.cogsci.nl/qnotero"

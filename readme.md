@@ -1,32 +1,33 @@
-# Zotero standalone installer for Linux
+# Zotero standalone installer for Linux (Installeur de Zotero Standalone pour Gu/linux)
 
 Copyright 2011-2018 Sebastiaan Mathôt
+Francisation MagicVince
 
 - <http://www.cogsci.nl/smathot>
 - <http://www.cogsci.nl/qnotero>
 
-## About
+## A propos
 
-This is an automated installer that will install Zotero standalone on a Linux system. An Ubuntu package based on the installer is also provided (see below).
+Ceci est un installateur automatisé déploiera Zotero sur un système Linux. Un paquetage pour Ubuntu basé sur cet installeur est disponible (mais dans sa version originale, non traduite par mes soins)
 
-## Using the installer
+## Utilisation de l'installeur
 
-Download zotero_installer.sh and run it. This will download Zotero standalone, extract it into /opt/zotero or /home/[user]/zotero, and create a Zotero menu entry.
+Télécharger le script zotero_installer.sh et l'exécuter. Il se chargera de télécharger la version "Standalone" de Zotero pour l'extraire dans le répertoire /opt/zotero (installation globale pour tous les utilisateurs du postes) ou /home/[user]/zotero (installation locale, juste pour l'utilisateur installant). L'installeur créera aussi les entrées dans le menu de l'interface graphique du système.
 
 	wget https://raw.github.com/smathot/zotero_installer/master/zotero_installer.sh -O /tmp/zotero_installer.sh
 	chmod +x /tmp/zotero_installer.sh
 	/tmp/zotero_installer.sh
 
-## Using the Ubuntu PPA
+## Utilisation d'un PPA pour Ubuntu (et dérivées)
 
-Ubuntu users can install Zotero standalone from the Cogsci.nl PPA <https://launchpad.net/~smathot/+archive/cogscinl>. The debian package is simply a wrapper around the automated installer, but may be more convenient with respect to updates etc.
+Les utilisateurs·utilisatrices d'Ubuntu peuvent installer la version "Standalone" de Zotero en ajoutantle PPA <https://launchpad.net/~smathot/+archive/cogscinl>  depuis le dépôt de Cogsci.nl . Le paquet debian est un simple emballage de l'installeur automatisé, mais facilite peut-être la notification des mises à jours des nouvelles versions de zotero.
 
-To install Zotero standalone from the PPA, please run the following commands in a terminal:
+Pour installer la version "Standalone " de Zotero depuis son PPA, merci de suivre les commandes suivantes dans un terminal:
 
 	sudo add-apt-repository ppa:smathot/cogscinl
 	sudo apt-get update
 	sudo apt-get install zotero-standalone
 
-## License
+## Licence
 
-This installer falls under the General Public License v3. For more information, see the file `COPYING` or visit <http://www.gnu.org/licenses/gpl.html>.
+Cet installeur est sous General Public License v3. Pour plus d'informations, voir le fichier `COPYING` ou visiter <http://www.gnu.org/licenses/gpl.html>.

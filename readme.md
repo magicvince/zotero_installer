@@ -14,7 +14,7 @@ Ceci est un installateur automatisé déploiera Zotero sur un système Linux. Un
 
 Télécharger le script zotero_installer.sh et l'exécuter. Il se chargera de télécharger la version "Standalone" de Zotero pour l'extraire dans le répertoire /opt/zotero (installation globale pour tous les utilisateurs du postes) ou /home/[user]/zotero (installation locale, juste pour l'utilisateur installant). L'installeur créera aussi les entrées dans le menu de l'interface graphique du système.
 
-	wget https://raw.github.com/smathot/zotero_installer/master/zotero_installer.sh -O /tmp/zotero_installer.sh
+	wget https://raw.github.com/magicvince/zotero_installer/master/zotero_installer.sh -O /tmp/zotero_installer.sh
 	chmod +x /tmp/zotero_installer.sh
 	/tmp/zotero_installer.sh
 

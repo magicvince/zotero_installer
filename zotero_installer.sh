@@ -29,7 +29,7 @@ DEST_FOLDER=zotero
 EXEC=zotero
 
 echo ">>> Ce script va téléchargé et installé la version standalone de zotero sur votre système."
-echo ">>> Voulez--vous continuer?"
+echo ">>> Voulez-vous continuer?"
 echo ">>> o/n (defaut=o)"
 read INPUT
 if [ "$INPUT" = "n" ]; then
